@@ -17,6 +17,8 @@ public class GameBrain : MonoBehaviour {
 	delegate void FState();
  	FState stateMethod;
 	
+	FadeTransition fade;
+	
 	public GameObject PlayerPrefab;
 	
 	public static GameBrain Instance;
@@ -33,10 +35,11 @@ public class GameBrain : MonoBehaviour {
 	
 	void Start()
 	{
+		fade = gameObject.GetComponent<FadeTransition>();
 		Debug.Log("Start");
 		stateMethod = new FState(NullState);
-		FadeTransition.Instance.Sprite.gameObject.SetActive(true);
-		FadeTransition.Instance.ImmediateOpaque();
+		fade.Sprite.gameObject.SetActive(true);
+		fade.ImmediateOpaque();
 		
 	}
 	
@@ -51,7 +54,7 @@ public class GameBrain : MonoBehaviour {
 	{
 		if(ready)
 		{
-			if(FadeTransition.Instance.ToTransparent())
+			if(fade.ToTransparent())
 			stateMethod = new FState(PlayerDrop);
 		}
 	}

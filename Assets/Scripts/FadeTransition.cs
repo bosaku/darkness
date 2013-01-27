@@ -8,7 +8,7 @@ public class FadeTransition : MonoBehaviour {
 	public float FadeCutoff = .5f;
 	
 	public enum Colors {blue,black,red,green,white};
-	public static FadeTransition Instance;
+	//public static FadeTransition Instance;
 
 	
 //	Color Transparent = new Color(1,1,1,0);
@@ -24,7 +24,7 @@ public class FadeTransition : MonoBehaviour {
 	{
 		//Sprite = gameObject.GetComponent<UISlicedSprite>();
 		ColorStateMethod = new ColorStates(NullState);
-		Instance = this;
+		
 	}
 	
 	void NullState()
