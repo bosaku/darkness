@@ -10,6 +10,7 @@ public class PlayerMove : MonoBehaviour {
 	Transform myTransform;
 	public float SecondsWaitTilResume = .5f;
 	public LayerMask ignoreTheseColliders;
+	public LayerMask slideAgainstTheseColliders;
 	
 	void Start()
 	{
@@ -33,9 +34,18 @@ public class PlayerMove : MonoBehaviour {
 		Collider[] hits = Physics.OverlapSphere(transform.position, characterController.radius, ignoreTheseColliders);
 		int i = 0;
 		foreach(Collider c in hits)
-		{   i++;
-			if(i >= 1 && c.name != "Player")
-			LerpBack(c);
+		{   
+			if(c.gameObject.layer == slideAgainstTheseColliders)
+			{
+					
+			}else
+			{
+				i++;
+				if(i >= 1 && c.name != "Player" ) //Add a cut off to diminish the times when hitting the rock at slow speed. If slow, don't lerp back, just slide. 
+					LerpBack(c);
+			}
+			//if slow
+			//Slide 
 			
 		}
 		

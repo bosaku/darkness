@@ -34,6 +34,7 @@ public class RandomlyCreatedObject : MonoBehaviour {
 //		{
 //			//Destroy(gameObject);
 //		}
+		
 	}
 	
 	void OnCollisionExit(Collision c)
@@ -55,5 +56,10 @@ public class RandomlyCreatedObject : MonoBehaviour {
 		//Debug.Log(c.gameObject.layer.ToString());
 		if( c.gameObject.layer == 11)
 		Destroy(gameObject);
+		
+		if(c.gameObject.name == "Player")
+		{
+			Destroy(gameObject);
+		}
 	}
 }

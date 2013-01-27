@@ -103,7 +103,7 @@ public class Randomize : MonoBehaviour {
 		
 		Vector3 random1 = GetARandomPosition();
 		
-		Debug.Log("Connect creator");
+		//Debug.Log("Connect creator");
 		thing.GetComponent<RandomlyCreatedObject>().creator = this;
 		t.position = random1;
 		
@@ -239,7 +239,7 @@ public class Randomize : MonoBehaviour {
 			numberOfRockGroups = rockCount/rocksPerGroup;
 		}
 		
-		Debug.Log("Going to make : " + numberOfRockGroups + " groups");
+		//Debug.Log("Going to make : " + numberOfRockGroups + " groups");
 		for (int a = 0; a < numberOfRockGroups; a++) //groups 0 - 5
 		{
 			for(int i = 0; i < rocksPerGroup; i++) // 0 - 19
@@ -252,7 +252,7 @@ public class Randomize : MonoBehaviour {
 			yield return new WaitForEndOfFrame();
 			Debug.Log("processed so far, this message once per group : " + rocksCreatedSoFar);
 		}
-		Debug.Log("Total processed in all groups : " + rocksCreatedSoFar);
+		//Debug.Log("Total processed in all groups : " + rocksCreatedSoFar);
 		
 		yield return new WaitForEndOfFrame();
 		//Trees
@@ -266,20 +266,20 @@ public class Randomize : MonoBehaviour {
 			treesPerGroup+=2;
 			numberOfTreeGroups = treeCount / treesPerGroup;
 		}
-		Debug.Log("Going to make : " + numberOfTreeGroups + " groups");
+		//Debug.Log("Going to make : " + numberOfTreeGroups + " groups");
 		for (int a = 0; a < numberOfTreeGroups; a++) //groups 0 - 5
 		{
 			for(int i = 0; i < treesPerGroup; i++) // 0 - 19
 			{
-				Debug.Log("Make trees from group : " + a + " and item number is : " + i);
+				//Debug.Log("Make trees from group : " + a + " and item number is : " + i);
 				//CreateRandomObjects(rocks, rockCount, true, false,  allRocks);	
 				CreateRandomObject(trees[ Random.Range(0,trees.Length) ], true, true, allTrees);
 				treesCreatedSoFar++;
 			}
 			yield return new WaitForEndOfFrame();
-			Debug.Log("processed so far, this message once per group : " + treesCreatedSoFar);
+			//Debug.Log("processed so far, this message once per group : " + treesCreatedSoFar);
 		}
-		Debug.Log("Total processed in all groups : " + treesCreatedSoFar);
+		//Debug.Log("Total processed in all groups : " + treesCreatedSoFar);
 		yield return new WaitForEndOfFrame();
 		
 		//Vegetation
@@ -343,7 +343,7 @@ public class Randomize : MonoBehaviour {
 			SplitBasedOnVectorQuantity(allVeg);
 		}
 		
-		
+		GameBrain.Instance.ready = true;
 			
 		//ResetButton.isEnabled = true;
 	}
@@ -355,19 +355,21 @@ public class Randomize : MonoBehaviour {
 			Destroy(go.GetComponent<BoxCollider>());
 			go.gameObject.AddComponent<MeshCollider>();
 			Destroy(go.GetComponent<Rigidbody>());
+			go.gameObject.GetComponent<RandomlyCreatedObject>().enabled = false;
 		}
 		foreach(Transform ga in allTrees.transform)
 		{
 			Destroy(ga.GetComponent<BoxCollider>());
 			ga.gameObject.AddComponent<MeshCollider>();
 			Destroy(ga.GetComponent<Rigidbody>());
-			
+			ga.gameObject.GetComponent<RandomlyCreatedObject>().enabled = false;
 		}
 		foreach(Transform gv in allVeg.transform)
 		{
 			Destroy(gv.GetComponent<BoxCollider>());
 			gv.gameObject.AddComponent<MeshCollider>();
 			Destroy(gv.GetComponent<Rigidbody>());
+			gv.gameObject.GetComponent<RandomlyCreatedObject>().enabled = false;
 		}
 	}
 	

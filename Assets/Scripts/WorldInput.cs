@@ -64,27 +64,27 @@ public class WorldInput : MonoBehaviour {
 			}
 			
 			//Mouse down
-			if(Input.GetMouseButtonDown(0) && gameBrain.release)
-			{
-				Ray ray = worldCamera.ScreenPointToRay(new Vector3( Input.mousePosition.x, Input.mousePosition.y ) );
-				//Debug.Log("button down");
-				RaycastHit hit ;
-				if( Physics.Raycast(ray,out hit, 100, MovementMask) )
-				{
-					//Debug.Log("Raycast hit" + hit.collider.tag);
-					startPos = hit.point;
-					
-					
-//					if(gestureAttack.attack == GestureAttack.Attacks.resting && hit.collider.gameObject.tag == GameBrain.Instance.leader.name)
-//					{
-//						//initiate draw. Cancel draw if the change is not great enough
-//						//Debug.Log("Begin draw..");
-//						gestureAttack.BeginDrawState();
-//						
-//						//Start Drawing
-//					}
-				}
-			}
+//			if(Input.GetMouseButtonDown(0) && gameBrain.release)
+//			{
+//				Ray ray = worldCamera.ScreenPointToRay(new Vector3( Input.mousePosition.x, Input.mousePosition.y ) );
+//				//Debug.Log("button down");
+//				RaycastHit hit ;
+//				if( Physics.Raycast(ray,out hit, 100, MovementMask) )
+//				{
+//					//Debug.Log("Raycast hit" + hit.collider.tag);
+//					startPos = hit.point;
+//					
+//					
+////					if(gestureAttack.attack == GestureAttack.Attacks.resting && hit.collider.gameObject.tag == GameBrain.Instance.leader.name)
+////					{
+////						//initiate draw. Cancel draw if the change is not great enough
+////						//Debug.Log("Begin draw..");
+////						gestureAttack.BeginDrawState();
+////						
+////						//Start Drawing
+////					}
+//				}
+//			}
 			
 			//Drawline
 //			if(Input.mousePosition != startPos  && gameBrain.release && Input.GetMouseButton(0) )
