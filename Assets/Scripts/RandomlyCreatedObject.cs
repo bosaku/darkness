@@ -20,7 +20,7 @@ public class RandomlyCreatedObject : MonoBehaviour {
 	{
 		if(myTransform.position.y < -2 && t <= 2 ) //They get 3 chances
 		{
-			GameBrain.Instance.GetComponent<Randomize>().ReRandomize(gameObject);
+			creator.ReRandomize(gameObject);
 			t++;
 		}
 		else if(t > 2)
@@ -46,7 +46,7 @@ public class RandomlyCreatedObject : MonoBehaviour {
 	
 	void OnCollisionStay(Collision c)
 	{
-		Debug.Log(" collided with : " + c.gameObject.layer.ToString());
+		//Debug.Log(" collided with : " + c.gameObject.layer.ToString());
 		
 		if( c.gameObject.layer == 8)
 		{

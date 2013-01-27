@@ -27,7 +27,7 @@ public class WorldInput : MonoBehaviour {
 			
 			if(Input.GetMouseButtonUp(0) )// && releaseControls) to prevent extra raycasting. Need to release controls from the UI Camera, with NGUI or whatever gets used. 
 			{
-				Debug.Log("Button UP");
+				//Debug.Log("Button UP");
 				Ray ray = worldCamera.ScreenPointToRay(new Vector3( Input.mousePosition.x, Input.mousePosition.y ) );
 				
 				RaycastHit hit ;

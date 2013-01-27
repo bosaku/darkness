@@ -103,6 +103,7 @@ public class Randomize : MonoBehaviour {
 		
 		Vector3 random1 = GetARandomPosition();
 		
+		Debug.Log("Connect creator");
 		thing.GetComponent<RandomlyCreatedObject>().creator = this;
 		t.position = random1;
 		
@@ -119,7 +120,6 @@ public class Randomize : MonoBehaviour {
 			randomRot.z = 0;
 			t.rotation = randomRot;
 		}
-		
 		allThingsCreated.Add(thing);
 	}
 	
@@ -333,13 +333,42 @@ public class Randomize : MonoBehaviour {
 //		allTrees.AddComponent<CombineChildren>();
 //		allVeg.AddComponent<CombineChildren>();
 	//	SplitAllThingsIntoGroupsAndAddCombineComponent();
+		
+		DisableAllRigids();
+		
 		if(Combine)
 		{
 			SplitBasedOnVectorQuantity(allRocks);
 			SplitBasedOnVectorQuantity(allTrees);
 			SplitBasedOnVectorQuantity(allVeg);
 		}
+		
+		
+			
 		//ResetButton.isEnabled = true;
+	}
+	
+	void DisableAllRigids()
+	{
+		foreach(Transform go in allRocks.transform)
+		{
+			Destroy(go.GetComponent<BoxCollider>());
+			go.gameObject.AddComponent<MeshCollider>();
+			Destroy(go.GetComponent<Rigidbody>());
+		}
+		foreach(Transform ga in allTrees.transform)
+		{
+			Destroy(ga.GetComponent<BoxCollider>());
+			ga.gameObject.AddComponent<MeshCollider>();
+			Destroy(ga.GetComponent<Rigidbody>());
+			
+		}
+		foreach(Transform gv in allVeg.transform)
+		{
+			Destroy(gv.GetComponent<BoxCollider>());
+			gv.gameObject.AddComponent<MeshCollider>();
+			Destroy(gv.GetComponent<Rigidbody>());
+		}
 	}
 	
 //	bool SplitAgain(GameObject go)
