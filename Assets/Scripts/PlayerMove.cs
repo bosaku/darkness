@@ -9,9 +9,10 @@ public class PlayerMove : MonoBehaviour {
 	public CharacterController characterController;
 	Transform myTransform;
 	public float SecondsWaitTilResume = .5f;
-	public LayerMask ignoreTheseColliders;
+	public LayerMask collideWithThese;
 	public LayerMask slideAgainstTheseColliders;
 	public LayerMask winWithTheseColliders;
+	public LayerMask hardColliders;
 	
 	void Start()
 	{
@@ -32,28 +33,43 @@ public class PlayerMove : MonoBehaviour {
 //		{
 //			navAgent.Stop();	
 //		}
-		Collider[] hits = Physics.OverlapSphere(transform.position, characterController.radius, ignoreTheseColliders);
+		Collider[] hits = Physics.OverlapSphere(transform.position, characterController.radius, collideWithThese);
 		int i = 0;
 		foreach(Collider c in hits)
 		{   
-			Debug.Log(hits.Length);
-			if(c.gameObject.layer == winWithTheseColliders)
+			if(c.gameObject.name == "Heavy(Clone)")
+			{
+				LerpBack(c);
+			}
+			if(c.gameObject.name == "Torch(Clone)")
 			{
 				Debug.Log("WIN WIN WIN");
 				GameBrain.Instance.playerGoal = true;
 			}
-			if(c.gameObject.layer == slideAgainstTheseColliders)
+			if(c.gameObject.name == "Round(Clone)")
 			{
 				Debug.Log("SLIDE");
 			}
-			if(c.gameObject.layer != slideAgainstTheseColliders && c.gameObject.layer != winWithTheseColliders)
-			{
-				i++;
-				if(i >= 1 && c.name != "Player" ) //Add a cut off to diminish the times when hitting the rock at slow speed. If slow, don't lerp back, just slide. 
-					LerpBack(c);
-			}
-			//if slow
-			//Slide 
+			
+			
+//			Debug.Log(hits.Length);
+//			if(c.gameObject.layer == winWithTheseColliders)
+//			{
+//				Debug.Log("WIN WIN WIN");
+//				GameBrain.Instance.playerGoal = true;
+//			}
+//			if(c.gameObject.layer == slideAgainstTheseColliders)
+//			{
+//				Debug.Log("SLIDE");
+//			}
+//			if(c.gameObject.layer != hardColliders)
+//			{	
+//				i++;
+//				if(i >= 1 && c.name != "Player" && c.name != "Torch(Clone)") //Add a cut off to diminish the times when hitting the rock at slow speed. If slow, don't lerp back, just slide. 
+//					LerpBack(c);
+//			}
+//			//if slow
+//			//Slide 
 			
 		}
 		

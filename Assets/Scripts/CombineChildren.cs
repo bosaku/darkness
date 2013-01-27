@@ -13,7 +13,7 @@ public class CombineChildren : MonoBehaviour {
 	/// Usually rendering with triangle strips is faster.
 	/// However when combining objects with very low triangle counts, it can be faster to use triangles.
 	/// Best is to try out which value is faster in practice.
-	public bool generateTriangleStrips = true;
+	public bool generateTriangleStrips = false;
 	
 	/// This option has a far longer preprocessing time at startup but leads to better runtime performance.
 	void Start () {

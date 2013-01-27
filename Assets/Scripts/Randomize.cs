@@ -329,19 +329,19 @@ public class Randomize : MonoBehaviour {
 		}
 		yield return new WaitForSeconds(1);
 		//Debug.Log(allThingsCreated.Count + " all created");
-//		allRocks.AddComponent<CombineChildren>();
-//		allTrees.AddComponent<CombineChildren>();
-//		allVeg.AddComponent<CombineChildren>();
+		allRocks.AddComponent<CombineChildren>();
+		allTrees.AddComponent<CombineChildren>();
+		allVeg.AddComponent<CombineChildren>();
 	//	SplitAllThingsIntoGroupsAndAddCombineComponent();
 		
 		DisableAllRigids();
 		
-		if(Combine)
-		{
-			SplitBasedOnVectorQuantity(allRocks);
-			SplitBasedOnVectorQuantity(allTrees);
-			SplitBasedOnVectorQuantity(allVeg);
-		}
+//		if(Combine)
+//		{
+//			SplitBasedOnVectorQuantity(allRocks);
+//			SplitBasedOnVectorQuantity(allTrees);
+//			SplitBasedOnVectorQuantity(allVeg);
+//		}
 		
 		GameBrain.Instance.ready = true;
 			
