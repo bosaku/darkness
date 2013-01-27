@@ -49,6 +49,7 @@ public class WorldInput : MonoBehaviour {
 //						}
 //						else 
 //						{
+							if(gameBrain.leader)
 							gameBrain.playerMove.BeginPathfind(hit.point);
 							//PlaceDestinationMarker(hit.point);
 							//GameObject g = GameObject.CreatePrimitive(PrimitiveType.Cube) as GameObject;

@@ -11,6 +11,7 @@ public class PlayerMove : MonoBehaviour {
 	public float SecondsWaitTilResume = .5f;
 	public LayerMask ignoreTheseColliders;
 	public LayerMask slideAgainstTheseColliders;
+	public LayerMask winWithTheseColliders;
 	
 	void Start()
 	{
@@ -35,10 +36,17 @@ public class PlayerMove : MonoBehaviour {
 		int i = 0;
 		foreach(Collider c in hits)
 		{   
+			Debug.Log(hits.Length);
+			if(c.gameObject.layer == winWithTheseColliders)
+			{
+				Debug.Log("WIN WIN WIN");
+				GameBrain.Instance.playerGoal = true;
+			}
 			if(c.gameObject.layer == slideAgainstTheseColliders)
 			{
-					
-			}else
+				Debug.Log("SLIDE");
+			}
+			if(c.gameObject.layer != slideAgainstTheseColliders && c.gameObject.layer != winWithTheseColliders)
 			{
 				i++;
 				if(i >= 1 && c.name != "Player" ) //Add a cut off to diminish the times when hitting the rock at slow speed. If slow, don't lerp back, just slide. 
@@ -55,7 +63,9 @@ public class PlayerMove : MonoBehaviour {
 	void LerpBack(Collider c)
 	{
 		Vector3 newPos = c.transform.position - myTransform.position;
-		characterController.Move(Vector3.forward - newPos);
+		Vector3 secondPos = Vector3.forward - newPos;
+		characterController.Move(secondPos);
+		//iTween.MoveTo(gameObject, secondPos, .3f);
 		navAgent.Stop(true);
 		
 		StartCoroutine(Resume());

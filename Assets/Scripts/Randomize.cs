@@ -28,7 +28,7 @@ public class Randomize : MonoBehaviour {
  	List<GameObject> allThingsCreated;
 	
 	// Use this for initialization
-	void Start () 
+	public void StartRandomizing () 
 	{
 //		ResetButton.disabledColor = Color.black;
 //		ResetButton.isEnabled = false;
